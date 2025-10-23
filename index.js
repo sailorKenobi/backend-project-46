@@ -1,11 +1,6 @@
 //https://github.com/tj/commander.js?tab=readme-ov-file#automated-help
 import { Command } from "commander"
-
-const genDiff = (filepath1, filepath2) => {
-  //TODO: add something usefull
-}
-
-export default genDiff
+import parseData from './src/file_utils.js'
 
 const program = new Command()
 program.description('Compares two configuration files and shows a difference.')
@@ -16,6 +11,13 @@ program.option('-f, --format [type]', 'output format')
 
 program.parse(process.argv)
 
+program.action((filepath1, filepath2) => {
+  //console.log('action call')
+  parseData(filepath1)
+  parseData(filepath2)
+})
+
+//parseData('./files/file1.json')
 //const options = program.opts()
 //if (options.help)
 //    console.log(program.helpInformation())
